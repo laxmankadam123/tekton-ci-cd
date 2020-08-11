@@ -32,7 +32,8 @@ spec:
       containers:
         - name: app
           # Because kube-registry-proxy is present localhost access is via http instead of https
-          image: kadam121212/tektonprivate
+          image: kadam121212/tektonprivate:3.0
+5 minutes ago
           ports:
           - containerPort: 3300
       imagePullSecrets:
