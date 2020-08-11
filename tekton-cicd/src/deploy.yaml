@@ -17,7 +17,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: app
-  labels:
+  luabels:
     app: app
 spec:
   replicas: 1
@@ -30,11 +30,13 @@ spec:
         app: app
     spec:
       containers:
-        - name: app
-         
-          image: kadam121212/tektonprivate:3.0
+      - name: app
+        image:  kadam121212/tektonprivate:3.0
+
+        ports:
+          - containerPort: 3300
       imagePullSecrets:
         - name: docker-cred
-          ports:
-            - containerPort: 3300
+
+         
      
