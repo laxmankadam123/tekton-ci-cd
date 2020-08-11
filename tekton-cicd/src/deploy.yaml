@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: app
+  labels:
+    app: app
+spec:
+  type: NodePort
+  ports:
+    - port: 3300
+      name: app
+      nodePort: 32000
+  selector:
+    app: app
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app
+  labels:
+    app: app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+        - name: app
+          # Because kube-registry-proxy is present localhost access is via http instead of https
+          image: <your-dockerhub-repository-name:image-tagname>
+          ports:
+          - containerPort: 3300
+       imagePullSecrets:
+         - name: <your-created-secret-name>

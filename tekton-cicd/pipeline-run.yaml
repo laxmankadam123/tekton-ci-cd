@@ -1,0 +1,24 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineRun
+metadata:
+  name: application-pipeline-run
+spec:
+  pipelineRef:
+    name: application-pipeline
+  resources:
+    - name: git-source
+      resourceRef:
+        name: git
+    - name: builtImage
+      resourceRef:
+        name: pushimage
+  params:
+    - name: pathToContext
+      value: "src"
+    - name: pathToYamlFile
+      value: "deploy.yaml"
+    - name: "imageUrl"
+      value: "<docker-hub-repository-name>"
+    - name: "imageTag"
+      value: "0.0.1"
+  serviceAccountName: service-account
