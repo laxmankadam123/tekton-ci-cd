@@ -3,36 +3,36 @@ kind: Service
 metadata:
   name: app
   labels:
-    app: app1
+    app: app
 spec:
   type: NodePort
   ports:
     - port: 3300
-      name: app1
-      nodePort: 32000
+      name: app
+      nodePort: 32426
   selector:
-    app: app1
+    app: app
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app1
+  name: app
   labels:
-    app: app1
+    app: app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: app1
+      app: app
   template:
     metadata:
       labels:
-        app: app1
+        app: app
     spec:
       containers:
         - name: app1
           image: kadam121212/tektonprivate:3.0
           ports:
-          - containerPort: 3300
+            - containerPort: 3300
       imagePullSecrets:
         - name: docker-cred
