@@ -9,7 +9,7 @@ spec:
   ports:
     - port: 3300
       name: app
-      nodePort: 32426
+      nodePort: 32000
   selector:
     app: app
 ---
@@ -20,7 +20,7 @@ metadata:
   labels:
     app: app
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: app
@@ -30,9 +30,11 @@ spec:
         app: app
     spec:
       containers:
-        - name: app1
+        - name: app
+          # Because kube-registry-proxy is present localhost access is via http instead of https
           image: kadam121212/tektonprivate:3.0
+
           ports:
-            - containerPort: 3300
+          - containerPort: 3300
       imagePullSecrets:
-        - name: docker-cred
+         - name: <your-created-secret-name>
