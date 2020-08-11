@@ -35,8 +35,4 @@ spec:
           ports:
           - containerPort: 3300
       imagePullSecrets:
-         - name: docker-cred
-
-
-         
-     
+        - name: docker-cred
