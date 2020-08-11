@@ -17,7 +17,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: app
-  luabels:
+  labels:
     app: app
 spec:
   replicas: 1
