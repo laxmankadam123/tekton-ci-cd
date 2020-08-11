@@ -30,13 +30,13 @@ spec:
         app: app
     spec:
       containers:
-      - name: app
-        image:  kadam121212/tektonprivate:3.0
-
-        ports:
+        - name: app
+          image: kadam121212/tektonprivate:3.0
+          ports:
           - containerPort: 3300
       imagePullSecrets:
-        - name: docker-cred
+         - name: docker-cred
+
 
          
      
