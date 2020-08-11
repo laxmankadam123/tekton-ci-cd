@@ -20,7 +20,7 @@ metadata:
   labels:
     app: app
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: app
@@ -32,8 +32,8 @@ spec:
       containers:
         - name: app
           # Because kube-registry-proxy is present localhost access is via http instead of https
-          image: <your-dockerhub-repository-name:image-tagname>
+          image: kadam121212/tektonprivate
           ports:
           - containerPort: 3300
-       imagePullSecrets:
-         - name: <your-created-secret-name>
+      imagePullSecrets:
+         - name: docker-cred
